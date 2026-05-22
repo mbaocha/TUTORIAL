@@ -1,0 +1,92 @@
+state_schema:
+
+  company:
+    type: object
+
+    fields:
+
+      sector:
+        type: string
+        nullable: true
+
+      size:
+        type: integer
+        nullable: true
+
+      locations:
+        type: array
+        nullable: true
+
+        items:
+          type: object
+
+          fields:
+
+            city:
+              type: string
+              nullable: true
+
+            site_type:
+              type: string
+              nullable: true
+
+
+
+  workforce:
+    type: object
+
+    fields:
+
+      full_time_employee_count:
+        type: integer
+        nullable: true
+
+      part_time_employee_count:
+        type: integer
+        nullable: true
+
+      contractor_count:
+        type: integer
+        nullable: true
+
+      forklift_operator_count:
+        type: integer
+        nullable: true
+
+      working_at_height_count:
+        type: integer
+        nullable: true
+
+      lone_worker_count:
+        type: integer
+        nullable: true
+
+
+
+  operations:
+    type: object
+
+    fields:
+
+      operates_machinery:
+        type: boolean
+        nullable: true
+
+      machinery_types:
+        type: array
+        nullable: true
+
+        items:
+          type: string
+
+      working_at_height:
+        type: boolean
+        nullable: true
+
+      has_night_shift:
+        type: boolean
+        nullable: true
+
+      has_lone_workers:
+        type: boolean
+        nullable: true

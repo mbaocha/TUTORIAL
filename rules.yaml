@@ -1,0 +1,39 @@
+
+rules:
+
+  - when:
+      company.sector: construction
+
+    require:
+      - operations.operates_machinery
+      - operations.working_at_height
+
+  - when:
+      company.sector: logistics
+
+    require:
+      - operations.operates_machinery
+
+  - when:
+      operations.operates_machinery: true
+
+    require:
+      - operations.machinery_types
+
+  - when:
+      operations.machinery_types: forklift
+
+    require:
+      - workforce.forklift_operator_count
+
+  - when:
+      operations.working_at_height: true
+
+    require:
+      - workforce.working_at_height_count
+
+  - when:
+      operations.has_lone_workers: true
+
+    require:
+      - workforce.lone_worker_count

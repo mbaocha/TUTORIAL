@@ -1,0 +1,33 @@
+{
+    "crm_context": {
+        "company_id": "cmp_123",
+        "company_name": "ABC Construction Ltd"
+    },
+    "state": {
+        "company": {
+            "sector": null,
+            "size": null,
+            "location_count": null
+        },
+        "workforce": {
+            "full_time_employee_count": null,
+            "part_time_employee_count": null,
+            "contractor_count": null,
+            "forklift_operator_count": null,
+            "working_at_height_count": null,
+            "lone_worker_count": null
+        },
+        "operations": {
+            "operates_machinery": null,
+            "machinery_types": null,
+            "working_at_height": null,
+            "has_night_shift": null,
+            "has_lone_workers": null
+        }
+    },
+    "conversation": {
+        "asked_facts": [],
+        "deferred_facts": [],
+        "current_category": null
+    }
+}

@@ -1,0 +1,142 @@
+questions:
+
+  - fact: company.sector
+    category: company
+    prompt: What sector best describes your business?
+    type: single_select
+    priority: 10
+
+    options:
+      - construction
+      - hospitality
+      - retail
+      - manufacturing
+      - healthcare
+      - logistics
+
+  - fact: company.size
+    category: company
+    prompt: Approximately how many employees do you have?
+    type: number
+    priority: 10
+
+  - fact: company.location_count
+    category: company
+    prompt: How many locations or sites do you operate?
+    type: number
+    priority: 9
+
+  - fact: workforce.full_time_employee_count
+    category: workforce
+    prompt: How many full-time employees do you have?
+    type: number
+    priority: 8
+
+  - fact: workforce.part_time_employee_count
+    category: workforce
+    prompt: How many part-time employees do you have?
+    type: number
+    priority: 7
+
+  - fact: workforce.contractor_count
+    category: workforce
+    prompt: Approximately how many contractors do you use?
+    type: number
+    priority: 7
+
+  - fact: operations.operates_machinery
+    category: operations
+    prompt: Do employees operate machinery?
+    type: boolean
+    priority: 9
+
+  - fact: operations.machinery_types
+    category: operations
+    prompt: What types of machinery are used?
+    type: multi_select
+    priority: 8
+
+    options:
+      - forklift
+      - crane
+      - excavator
+      - pallet_truck
+      - conveyor_system
+
+  - fact: workforce.forklift_operator_count
+    category: workforce
+    prompt: How many forklift operators do you have?
+    type: number
+    priority: 7
+
+  - fact: operations.working_at_height
+    category: operations
+    prompt: Do employees work at height?
+    type: boolean
+    priority: 8
+
+  - fact: workforce.working_at_height_count
+    category: workforce
+    prompt: How many employees regularly work at height?
+    type: number
+    priority: 7
+
+  - fact: operations.has_night_shift
+    category: operations
+    prompt: Do you operate night shifts?
+    type: boolean
+    priority: 6
+
+  - fact: operations.has_lone_workers
+    category: operations
+    prompt: Do employees work alone?
+    type: boolean
+    priority: 6
+
+  - fact: workforce.lone_worker_count
+    category: workforce
+    prompt: Approximately how many lone workers do you have?
+    type: number
+    priority: 6
+
+
+
+rules:
+
+  - when:
+      company.sector: construction
+
+    require:
+      - operations.operates_machinery
+      - operations.working_at_height
+
+  - when:
+      company.sector: logistics
+
+    require:
+      - operations.operates_machinery
+      - operations.has_night_shift
+
+  - when:
+      operations.operates_machinery: true
+
+    require:
+      - operations.machinery_types
+
+  - when:
+      operations.machinery_types: forklift
+
+    require:
+      - workforce.forklift_operator_count
+
+  - when:
+      operations.working_at_height: true
+
+    require:
+      - workforce.working_at_height_count
+
+  - when:
+      operations.has_lone_workers: true
+
+    require:
+      - workforce.lone_worker_count
